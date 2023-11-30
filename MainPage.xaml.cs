@@ -2,23 +2,47 @@
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+
+        private List<string> namesList = new List<string>
+        {
+            "Name1",
+            "Name2",
+            "Name3",
+            "Name4",
+            "Name5"
+        };
 
         public MainPage()
         {
             InitializeComponent();
+
+            // Bind the namesList to the Picker's ItemsSource
+            myPicker.ItemsSource = namesList;
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private void OnButtonAddNameClicked(object sender, EventArgs e)
         {
-            count++;
+            // Add the name from the editor to the list
+            string newName = editorAddName.Text;
+            if (!string.IsNullOrWhiteSpace(newName))
+            {
+                namesList.Add(newName);
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+                // Refresh the Picker
+                myPicker.ItemsSource = null;
+                myPicker.ItemsSource = namesList;
+            }
         }
+
+        private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Display the chosen name in the label
+            string chosenName = myPicker.SelectedItem?.ToString();
+            if (!string.IsNullOrWhiteSpace(chosenName))
+            {
+                labelDisplayChosenNameHere.Text = "You have chosen the name: " + chosenName;
+            }
+        }
+
     }
 }
