@@ -36,10 +36,16 @@
 
         private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
         {
-            // Display the chosen name in the label
-            string chosenName = myPicker.SelectedItem?.ToString();
+            // Get the index of the selected item in the Picker
+            int selectedIndex = myPicker.SelectedIndex;
+
+            // Retrieve the name from the namesList based on the selected index
+            string chosenName = namesList[selectedIndex];
+
+            // Check if the chosenName is not empty or non-existent
             if (!string.IsNullOrWhiteSpace(chosenName))
             {
+                // Update the label to display the chosen name
                 labelDisplayChosenNameHere.Text = "You have chosen the name: " + chosenName;
             }
         }

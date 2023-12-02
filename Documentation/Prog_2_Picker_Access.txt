@@ -1,4 +1,4 @@
-# GA_Picker_Access
+﻿# GA_Picker_Access
 
 The picker is a control that is similar to a drop down menu. When clicked a list of different options is display. When an option is selected, the menu is then hidden again, showing only the selected option.
 
